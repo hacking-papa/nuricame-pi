@@ -20,9 +20,20 @@ To use LiPo battery, implement [Pimoroni LiPo SHIM](https://shop.pimoroni.com/pr
 `VBAT+` and `GND` are used for charging.
 `EN` can be pulled to ground to cut the power output from LiPo SHIM.
 
+```sh
+chmod +x setup_LiPoSHIM.sh
+./setup_LiPoSHIM.sh
+```
+
+Config: `/etc/cleanshutd.conf`
+
 ### Camera
 
-(T.B.D.)
+[Arducam 5MP OV5647](https://www.arducam.com/product/5mp-ov5647-motorized-focus-camera-sensor-raspberry-pi/) is Motorized Focus Camera Sensor for Raspberry Pi.
+
+```sh
+pip3 install pygame
+```
 
 ### I2C Display
 
