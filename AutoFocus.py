@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
+
+import logging
 import os
 import time
 from datetime import datetime
 
 import cv2
+import picamera
+from picamera.array import PiRGBArray
 
-try:
-    import picamera
-    from picamera.array import PiRGBArray
-except:
-    sys.exit(0)
+logger = logging.getLogger("nuricame")
 
 
 def focusing(val):
     value = (val << 4) & 0x3ff0
     data1 = (value >> 8) & 0x3f
     data2 = value & 0xf0
-    os.system("i2cset -y 0 0x0c %d %d" % (data1, data2))
+    os.system(f"i2cset -y 0 0x0c {data1} {data2}")
 
 
 def sobel(img):
@@ -41,10 +41,10 @@ def calculation(camera):
 
 def main():
     camera = picamera.PiCamera()
-    camera.start_preview()
+    # camera.start_preview()
     camera.resolution = (640, 480)
 
-    print("Start focusing")
+    logger.info("Start Focusing")
 
     max_index = 10
     max_value = 0.0
@@ -71,10 +71,10 @@ def main():
     focusing(max_index)
     time.sleep(1)
     camera.resolution = (2592, 1944)
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    now = datetime.now().strftime("%Y%m%d%H%M%S")
     camera.capture(f"original_{now}.jpg")
-    print("max index = %d, max value = %lf" % (max_index, max_value))
-    camera.stop_preview()
+    logger.info(f"max index: {max_index} / max value: {max_value}")
+    # camera.stop_preview()
     camera.close()
 
 
