@@ -29,6 +29,8 @@ Config: `/etc/cleanshutd.conf`
 
 ### Camera
 
+![IMG_2124](https://user-images.githubusercontent.com/32637762/75620129-114bf980-5bc8-11ea-9ea2-bf4a6d332509.jpg)
+
 [Arducam 5MP OV5647](https://www.arducam.com/product/5mp-ov5647-motorized-focus-camera-sensor-raspberry-pi/) is Motorized Focus Camera Sensor for Raspberry Pi.
 
 ```sh
@@ -36,6 +38,8 @@ pip3 install pygame
 ```
 
 ### I2C Display
+
+![IMG_2123](https://user-images.githubusercontent.com/32637762/75620123-fc6f6600-5bc7-11ea-8c64-a6be5f6e3077.jpg)
 
 (T.B.D.)
 

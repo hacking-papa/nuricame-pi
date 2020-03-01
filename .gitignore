@@ -316,3 +316,6 @@ zsdoc/data
 !/tests/_output/.gitkeep
 
 # End of https://www.gitignore.io/api/osx,ssh,zsh,linux,python,opencv,windows,pycharm+all,visualstudiocode
+
+### Data
+*.jpg
