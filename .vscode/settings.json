@@ -9,7 +9,10 @@
       "picamera",
       "pimoroni",
       "pygame",
+      "raspi",
       "sobel",
-      "vbat"
+      "vbat",
+      "waveshare",
+      "wiringpi"
     ]
 }

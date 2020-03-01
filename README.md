@@ -34,14 +34,40 @@ Config: `/etc/cleanshutd.conf`
 [Arducam 5MP OV5647](https://www.arducam.com/product/5mp-ov5647-motorized-focus-camera-sensor-raspberry-pi/) is Motorized Focus Camera Sensor for Raspberry Pi.
 
 ```sh
+chmod +x setup_i2c_vc.sh
+./setup_i2c_vc.sh
+sudo apt install python3-opencv
 pip3 install pygame
+sudo reboot
 ```
 
 ### I2C Display
 
 ![IMG_2123](https://user-images.githubusercontent.com/32637762/75620123-fc6f6600-5bc7-11ea-8c64-a6be5f6e3077.jpg)
 
-(T.B.D.)
+[Waveshare 1.3inch LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm) is 240x240 diagonal display with 1 joystick and 3 buttons via SPI interface.
+
+```sh
+sudo apt install wiringpi
+```
+
+```sh
+wget -O - http://www.airspayce.com/mikem/bcm2835/bcm2835-1.62.tar.gz | tar zxvf -
+cd bcm2835-1.62
+./configure
+make
+sudo make check
+sudo make install
+```
+
+Add the following 2 lines to `/etc/modules`.
+
+```txt
+i2c-bcm2708
+i2c-dev
+```
+
+`sudo raspi-config` to enable `I2C` and `SPI`.
 
 ## Misc
 
