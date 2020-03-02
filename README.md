@@ -77,7 +77,23 @@ i2c-dev
 
 ### Thermal Printer
 
-Find Printer's Bluetooth MAC address, like `00-15-82-90-1E-10`.
+We use [Paperang](https://www.paperang.com/).
+
+```sh
+sudo apt install python3-bluez
+```
+
+```python
+import bluetooth
+
+nearby = bluetooth.discover_devices(lookup_names=True)
+for addr, name in nearby:
+    print(f"{addr} -> {name}")
+```
+
+Find `Paperang`'s Bluetooth MAC address, like `00-15-82-90-1E-10`.
+
+Thanks, [BroncoTc/python-paperang](https://github.com/BroncoTc/python-paperang).
 
 ### Enclosure
 
