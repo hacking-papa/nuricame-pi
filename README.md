@@ -6,6 +6,8 @@ Turtle makes a contour by pictures, Raspberry Pi version.
   - [LiPo SHIM](#lipo-shim)
   - [Camera](#camera)
   - [I2C Display](#i2c-display)
+  - [Thermal Printer](#thermal-printer)
+  - [Enclosure](#enclosure)
 - [Misc](#misc)
   - [LICENSE](#license)
 
@@ -33,9 +35,13 @@ Config: `/etc/cleanshutd.conf`
 
 [Arducam 5MP OV5647](https://www.arducam.com/product/5mp-ov5647-motorized-focus-camera-sensor-raspberry-pi/) is Motorized Focus Camera Sensor for Raspberry Pi.
 
+Append the following line to `/boot/config.txt`.
+
+```txt
+dtparam=i2c_vc=on
+```
+
 ```sh
-chmod +x setup_i2c_vc.sh
-./setup_i2c_vc.sh
 sudo apt install python3-opencv
 pip3 install pygame
 sudo reboot
@@ -68,6 +74,14 @@ i2c-dev
 ```
 
 `sudo raspi-config` to enable `I2C` and `SPI`.
+
+### Thermal Printer
+
+Find Printer's Bluetooth MAC address, like `00-15-82-90-1E-10`.
+
+### Enclosure
+
+![case](https://user-images.githubusercontent.com/32637762/75654865-f9e23e80-5ca3-11ea-9939-00b3bb930a9f.jpg)
 
 ## Misc
 
