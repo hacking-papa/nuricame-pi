@@ -97,7 +97,8 @@ Thanks, [BroncoTc/python-paperang](https://github.com/BroncoTc/python-paperang).
 
 ### Enclosure
 
-![case](https://user-images.githubusercontent.com/32637762/75654865-f9e23e80-5ca3-11ea-9939-00b3bb930a9f.jpg)
+![design](https://user-images.githubusercontent.com/32637762/75762258-b8be5d00-5d7d-11ea-8768-278da57440ae.png)
+![image](https://user-images.githubusercontent.com/32637762/75762351-e0152a00-5d7d-11ea-9ec4-613414146d1c.png)
 
 ## Misc
 
