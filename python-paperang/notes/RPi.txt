@@ -2,8 +2,8 @@ Bitmap is sent to the printer, whose width must be 384.
 bitmap->[bytes]->{packPerBytes(byte, BtCommandByte.PRT_PRINT_DATA, i)->sendMsgAllPackage} loop i
 
 packPerBytes(list input, byte command, int id):
-  result<Byte>=[2, command, id]
-
+	result<Byte>=[2, command, id] 
+	
 
 ===================
 
@@ -29,7 +29,7 @@ invalid UUID
 Solution:
 https://stackoverflow.com/questions/17216264/bluetooth-connection-between-android-and-linux-rpi-lost-on-first-write-action
 
-Problem 2:
+Problem 2: 
 bluetooth.btcommon.BluetoothError: (2, 'No such file or directory')
 Solution:
 https://stackoverflow.com/questions/33110992/python-code-for-bluetooth-throws-error-after-i-had-to-reset-the-adapter

@@ -21,4 +21,4 @@ class Paperang_Printer:
 
 if __name__ == "__main__":
     mmj = Paperang_Printer()
-    mmj.print_dithered_image("pic.png")
+    mmj.print_dithered_image("../original.jpg")

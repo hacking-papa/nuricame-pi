@@ -30,7 +30,7 @@ class Paperang:
             return False
         logging.info("Service found. Connecting to \"%s\" on %s..." % (self.service["name"], self.service["host"]))
         self.sock = BluetoothSocket(RFCOMM)
-        self.sock.connect((self.service["host"].decode('UTF-8'), self.service["port"]))
+        self.sock.connect((self.service["host"], self.service["port"]))
         self.sock.settimeout(60)
         logging.info("Connected.")
         self.registerCrcKeyToBt()
