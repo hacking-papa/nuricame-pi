@@ -61,9 +61,9 @@ class BtManager:
     def scanservices(self):
         logging.info("Searching for services...")
         service_matches = find_service(uuid=self.uuid, address=self.address)
-        # print(service_matches)
+        print(service_matches)
         valid_service = list(filter(
-            lambda s: 'protocol' in s and 'name' in s and s['protocol'] == 'RFCOMM' and s['name'] == b'SerialPort',
+            lambda s: 'protocol' in s and 'name' in s and s['protocol'] == 'RFCOMM' and s['name'] == 'SerialPort',
             service_matches
         ))
         if len(valid_service) == 0:
@@ -158,6 +158,7 @@ class BtManager:
 
     def sendImageToBt(self, binary_img):
         self.sendPaperTypeToBt()
+        print(binary_img)
         height, width = binary_img.shape[:]
         for line in range(height):
             bits = [0 if x > 0 else 1 for x in binary_img[line]]
@@ -216,15 +217,15 @@ if __name__ == "__main__":
         mmj.sendDensityToBt(95)
 
         # Print an existing image(need opencv):
-        img = cv2.imread('kumamcn.png', 0)
-        ret, binary_img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-        height, width = binary_img.shape[:]
-        binary_img = cv2.resize(binary_img, (384, int(height*384.0/width)), cv2.INTER_AREA)
-        mmj.sendImageToBt(binary_img)
+        #img = cv2.imread('kumamcn.png', 0)
+        #ret, binary_img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
+        #height, width = binary_img.shape[:]
+        #binary_img = cv2.resize(binary_img, (384, int(height*384.0/width)), cv2.INTER_AREA)
+        #mmj.sendImageToBt(binary_img)
 
         # Print a pure black image with 300 lines
-        # img = b'\xff' * 48 * 300
-        # mmj.sendBinaryToBt(img)
+        img = b'\xff' * 48 * 300
+        mmj.sendBinaryToBt(img)
 
         mmj.disconnect()
     else:
