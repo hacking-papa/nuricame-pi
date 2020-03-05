@@ -1,0 +1,4 @@
+pybluez
+numpy
+scikit-image
+

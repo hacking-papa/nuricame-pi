@@ -2,7 +2,7 @@ Bitmap is sent to the printer, whose width must be 384.
 bitmap->[bytes]->{packPerBytes(byte, BtCommandByte.PRT_PRINT_DATA, i)->sendMsgAllPackage} loop i
 
 packPerBytes(list input, byte command, int id):
-	result<Byte>=[2, command, id]
+  result<Byte>=[2, command, id]
 
 
 ===================

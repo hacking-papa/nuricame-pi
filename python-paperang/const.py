@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 # -*-coding:utf-8-*-
 
 class BtCommandByte():
@@ -58,3 +58,4 @@ class BtCommandByte():
     PRT_SENT_COUNTRY_NAME = 46
     PRT_DISCONNECT_BT_CMD = 47
     PRT_MAX_CMD = 48
+
