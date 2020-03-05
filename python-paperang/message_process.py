@@ -1,11 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*-coding:utf-8-*-
-__author__ = "ihciah"
 
-import struct, zlib, logging
+
+import logging
+import struct
+import zlib
+
+import cv2
 from bluetooth import BluetoothSocket, find_service, RFCOMM, discover_devices
 from const import BtCommandByte
-import cv2
+
 
 class BtManager:
     standardKey = 0x35769521
@@ -44,7 +48,7 @@ class BtManager:
                         "It may take time, you'd better specify mac address to avoid a scan.")
         valid_names = ['MiaoMiaoJi', 'Paperang']
         nearby_devices = discover_devices(lookup_names=True)
-        valid_devices =  list(filter(lambda d: len(d) == 2 and d[1] in valid_names, nearby_devices))
+        valid_devices = list(filter(lambda d: len(d) == 2 and d[1] in valid_names, nearby_devices))
         if len(valid_devices) == 0:
             logging.error("Cannot find device with name %s." % " or ".join(valid_names))
             return False
@@ -89,10 +93,9 @@ class BtManager:
         result += struct.pack('<B', 3)
         return result
 
-
     def addBytesToList(self, bytes):
         length = self.max_send_msg_length
-        result = [bytes[i:i+length] for i in range(0, len(bytes), length)]
+        result = [bytes[i:i + length] for i in range(0, len(bytes), length)]
         return result
 
     def sendToBt(self, allbytes, control_command, need_reply=True):
@@ -118,11 +121,12 @@ class BtManager:
             class Info(object):
                 def __str__(self):
                     return "\nControl command: %s(%s)\nPayload length: %d\nPayload(hex): %s" % (
-                        self.command, BtCommandByte.findCommand(self.command)
+                        self.command, BtCommandByte.find_command(self.command)
                         , self.payload_length, self.payload.hex()
                     )
+
             info = Info()
-            _, info.command, _, info.payload_length = struct.unpack('<BBBH', data[base:base+5])
+            _, info.command, _, info.payload_length = struct.unpack('<BBBH', data[base:base + 5])
             info.payload = data[base + 5: base + 5 + info.payload_length]
             info.crc32 = data[base + 5 + info.payload_length: base + 9 + info.payload_length]
             base += 10 + info.payload_length
@@ -151,7 +155,7 @@ class BtManager:
     def sendBinaryToBt(self, binary_img):
         self.sendPaperTypeToBt()
         # msg = struct.pack("<%dc" % len(binary_img, *binary_img)
-        msgs = [binary_img[x: x+192] for x in range(0, len(binary_img), 192)] # 4*48
+        msgs = [binary_img[x: x + 192] for x in range(0, len(binary_img), 192)]  # 4*48
         for msg in msgs:
             self.sendToBt(msg, BtCommandByte.PRT_PRINT_DATA, need_reply=False)
         self.sendFeedLineToBt(self.padding_line)
@@ -162,10 +166,10 @@ class BtManager:
         height, width = binary_img.shape[:]
         for line in range(height):
             bits = [0 if x > 0 else 1 for x in binary_img[line]]
-            bits = [bits[x:x+8] for x in range(0, len(bits), 8)]
+            bits = [bits[x:x + 8] for x in range(0, len(bits), 8)]
             msg = ''
             for bit in bits:
-                bin = '0b'+''.join(str(x) for x in bit)
+                bin = '0b' + ''.join(str(x) for x in bit)
                 msg += '{:02x}'.format(int(bin, 0))
             msg = bytes.fromhex(msg)
             self.sendToBt(msg, BtCommandByte.PRT_PRINT_DATA, need_reply=False)
@@ -207,6 +211,7 @@ class BtManager:
         msg = struct.pack('<B', 1)
         self.sendToBt(msg, BtCommandByte.PRT_GET_HW_INFO)
 
+
 if __name__ == "__main__":
     logging.getLogger().setLevel(logging.INFO)
 
@@ -217,11 +222,11 @@ if __name__ == "__main__":
         mmj.sendDensityToBt(95)
 
         # Print an existing image(need opencv):
-        #img = cv2.imread('kumamcn.png', 0)
-        #ret, binary_img = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-        #height, width = binary_img.shape[:]
-        #binary_img = cv2.resize(binary_img, (384, int(height*384.0/width)), cv2.INTER_AREA)
-        #mmj.sendImageToBt(binary_img)
+        img = cv2.imread('kumamcn.png', 0)
+        ret, binary_img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
+        height, width = binary_img.shape[:]
+        binary_img = cv2.resize(binary_img, (384, int(height * 384.0 / width)), cv2.INTER_AREA)
+        mmj.sendImageToBt(binary_img)
 
         # Print a pure black image with 300 lines
         img = b'\xff' * 48 * 300

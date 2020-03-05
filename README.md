@@ -81,6 +81,19 @@ We use [Paperang](https://www.paperang.com/).
 
 ```sh
 sudo apt install python3-bluez
+sudo apt install libatlas-base-dev
+sudo apt install libjasper-dev
+sudo apt install libqtgui4
+sudo apt install libqt4-test
+sudo apt install python3-pyqt5
+```
+
+```sh
+sudo find / -type f -name '*atom*.so*'
+```
+
+```sh
+LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1.2.0 python3
 ```
 
 ```python

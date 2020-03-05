@@ -1,11 +1,9 @@
-#!/usr/bin/python
 # -*-coding:utf-8-*-
-__author__ = "ihciah"
 
 
 class BtCommandByte(object):
     @staticmethod
-    def findCommand(c):
+    def find_command(c):
         keys = filter(lambda x: not x.startswith("__") and BtCommandByte.__getattribute__(BtCommandByte, x) == c,
                       dir(BtCommandByte))
         return keys[0] if keys else "NO_MATCH_COMMAND"
@@ -60,4 +58,3 @@ class BtCommandByte(object):
     PRT_SENT_COUNTRY_NAME = 46
     PRT_DISCONNECT_BT_CMD = 47
     PRT_MAX_CMD = 48
-

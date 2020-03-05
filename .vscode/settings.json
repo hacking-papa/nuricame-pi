@@ -16,5 +16,6 @@
       "vbat",
       "waveshare",
       "wiringpi"
-    ]
+    ],
+  "python.pythonPath": "venv/bin/python3"
 }

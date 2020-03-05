@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*-coding:utf-8-*-
-__author__ = "ihciah"
 
 import cv2
+
 
 class ImageConverter:
     @staticmethod
@@ -18,7 +18,7 @@ class ImageConverter:
     def frombits(bits):
         chars = []
         for b in range(int(len(bits) / 8)):
-            byte = bits[b*8:(b+1)*8]
+            byte = bits[b * 8:(b + 1) * 8]
             chars.append(chr(int(''.join([str(bit) for bit in byte]), 2)))
         return ''.join(chars)
 
@@ -37,6 +37,7 @@ class ImageConverter:
     def image2bmp(path, interpolation=cv2.INTER_AREA):
         return ImageConverter.im2bmp(cv2.imread(path), interpolation)
 
+
 class TextConverter:
     @staticmethod
     def text2bmp(text, height=70, pos=(10, 50), font=cv2.FONT_HERSHEY_SIMPLEX, size=2, color=0, thick=2):
@@ -45,6 +46,7 @@ class TextConverter:
         blank_image.fill(255)
         img = cv2.putText(blank_image, text, pos, font, size, color, thick)
         return ImageConverter.im2bmp(img)
+
 
 if __name__ == "__main__":
     cv2.imshow("test", TextConverter.text2bmp("Coding by"))
