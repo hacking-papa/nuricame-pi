@@ -17,21 +17,21 @@ fh = logging.FileHandler("nuricame.log")
 logger.addHandler(fh)
 
 
-def focus(val):
-    value = (val << 4) & 0x3ff0
+def focus(arg):
+    value = (arg << 4) & 0x3ff0
     data1 = (value >> 8) & 0x3f
     data2 = value & 0xf0
-    subprocess.call(["i2cset", "-y", "0", "0x0c", data1, data2])
+    subprocess.call(["i2cset", "-y", "0", "0x0c", str(data1), str(data2)])
 
 
-def sobel(img):
-    img_gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+def sobel(image):
+    img_gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     img_sobel = cv2.Sobel(img_gray, cv2.CV_16U, 1, 1)
     return cv2.mean(img_sobel)[0]
 
 
-def laplacian(img):
-    img_gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+def laplacian(image):
+    img_gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     img_laplacian = cv2.Laplacian(img_gray, cv2.CV_16U)
     return cv2.mean(img_laplacian)[0]
 

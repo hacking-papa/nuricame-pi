@@ -108,7 +108,7 @@ Run with `LD_PRELOAD`.
 LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1.2.0 python3
 ```
 
-Find `Paperang`'s Bluetooth MAC address, like `00-15-82-90-1E-10`.
+Find `Paperang`'s Bluetooth MAC address, like `00-15-83-55-5C-48`.
 
 ```python
 import bluetooth
