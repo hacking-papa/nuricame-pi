@@ -4,3 +4,4 @@ pybluez
 pygame
 scipy
 scikit-image
+spidev

@@ -88,6 +88,7 @@ sudo apt install libqt4-test
 sudo apt install python3-pyqt5
 ```
 
+Find `libatomic.so` 
 ```sh
 sudo find / -type f -name '*atom*.so*'
 ```
