@@ -37,13 +37,15 @@ Config: `/etc/cleanshutd.conf`
 
 Append the following line to `/boot/config.txt`.
 
-```txt
+```txt:/boot/config.txt
 dtparam=i2c_vc=on
 ```
 
+Install packages.
+
 ```sh
 sudo apt install python3-opencv
-pip3 install pygame
+sudo apt install python3-pygame
 sudo reboot
 ```
 
@@ -57,6 +59,8 @@ sudo reboot
 sudo apt install wiringpi
 ```
 
+Install BCM2835 driver.
+
 ```sh
 wget -O - http://www.airspayce.com/mikem/bcm2835/bcm2835-1.62.tar.gz | tar zxvf -
 cd bcm2835-1.62
@@ -68,9 +72,9 @@ sudo make install
 
 Add the following 2 lines to `/etc/modules`.
 
-```txt
-i2c-bcm2708
+```txt:/etc/modules
 i2c-dev
+i2c-bcm2708
 ```
 
 `sudo raspi-config` to enable `I2C` and `SPI`.
@@ -86,16 +90,22 @@ sudo apt install libjasper-dev
 sudo apt install libqtgui4
 sudo apt install libqt4-test
 sudo apt install python3-pyqt5
+sudo apt install python3-skimage
 ```
 
-Find `libatomic.so` 
+Find `libatomic.so`.
+
 ```sh
 sudo find / -type f -name '*atom*.so*'
 ```
 
+Run with `LD_PRELOAD`.
+
 ```sh
 LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1.2.0 python3
 ```
+
+Find `Paperang`'s Bluetooth MAC address, like `00-15-82-90-1E-10`.
 
 ```python
 import bluetooth
@@ -104,8 +114,6 @@ nearby = bluetooth.discover_devices(lookup_names=True)
 for addr, name in nearby:
     print(f"{addr} -> {name}")
 ```
-
-Find `Paperang`'s Bluetooth MAC address, like `00-15-82-90-1E-10`.
 
 Thanks, [BroncoTc/python-paperang](https://github.com/BroncoTc/python-paperang).
 

@@ -1,7 +1,4 @@
 numpy
-opencv-python
-pybluez
-pygame
 scipy
 scikit-image
 spidev
