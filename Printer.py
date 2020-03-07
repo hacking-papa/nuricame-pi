@@ -277,6 +277,7 @@ if __name__ == "__main__":
 
         # Print an existing image
         img = cv2.imread("sample_images/sample_1920x1920.jpg", cv2.IMREAD_GRAYSCALE)
+        ret, img = cv2.threshold(img, 0, 255, cv2.THRESH_OTSU)
         img_height, img_width = img.shape[:]
         resized_img = cv2.resize(img,
                                  (printer.print_resolution, int(img_height * printer.print_resolution / img_width)),
