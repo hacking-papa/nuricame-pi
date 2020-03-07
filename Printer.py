@@ -280,7 +280,7 @@ if __name__ == "__main__":
         printer.sendDensityToBt(95)
 
         # Print an existing image(need opencv):
-        img = cv2.imread('pic.jpg', 0)
+        img = cv2.imread('sample_images/sample_384x384.jpg', 0)
         ret, binary_img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
         height, width = binary_img.shape[:]
         binary_img = cv2.resize(binary_img, (384, int(height * 384.0 / width)), cv2.INTER_AREA)

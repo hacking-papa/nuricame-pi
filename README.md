@@ -8,10 +8,13 @@ Turtle makes a contour by pictures, Raspberry Pi version.
   - [I2C Display](#i2c-display)
   - [Thermal Printer](#thermal-printer)
   - [Enclosure](#enclosure)
+  - [(Optional) Visual Studio Code](#optional-visual-studio-code)
 - [Misc](#misc)
   - [LICENSE](#license)
 
 ## How to Setup
+
+Run `setup.sh` or see below.
 
 ### LiPo SHIM
 
@@ -123,8 +126,17 @@ Thanks, [BroncoTc/python-paperang](https://github.com/BroncoTc/python-paperang).
 ![image](https://user-images.githubusercontent.com/32637762/75762351-e0152a00-5d7d-11ea-9ec4-613414146d1c.png)
 ![IMG_2139](https://user-images.githubusercontent.com/32637762/75762929-d4763300-5d7e-11ea-91c7-88946c552710.jpg)
 
+### (Optional) Visual Studio Code
+
+```sh
+wget -qO - https://packagecloud.io/headmelted/codebuilds/gpgkey | sudo apt-key add -
+sudo su
+. <( wget -O - https://code.headmelted.com/installers/apt.sh )
+exit
+```
+
 ## Misc
 
 ### LICENSE
 
-See [LICENSE.md](LICENSE.md).
+The software is distributed freely under **GOOD DADDY LICENSE**, see [LICENSE.md](LICENSE.md).

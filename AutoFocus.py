@@ -78,7 +78,7 @@ def main():
     camera.resolution = (2592, 1944)
     now = datetime.now().strftime("%Y%m%d%H%M%S")
     camera.capture(f"original_{now}.jpg")
-    logger.info(f"max index: {max_index} / max value: {max_value}")
+    logger.info(f"max focus index: {max_index} / max focus value: {max_value}")
     # camera.stop_preview()
     camera.close()
 

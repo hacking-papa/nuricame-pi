@@ -30,11 +30,11 @@ bus = 0
 device = 0
 
 # 240x240 display with hardware SPI:
-disp = ST7789.ST7789(SPI.SpiDev(bus, device), RST, DC, BL)
-disp.init()
+display = ST7789.ST7789(SPI.SpiDev(bus, device), RST, DC, BL)
+display.init()
 
 # Clear display.
-disp.clear()
+display.clear()
 
 # init GPIO
 # for P4:
@@ -61,7 +61,7 @@ draw = ImageDraw.Draw(image)
 
 # Draw a black filled box to clear the image.
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
-disp.show_image(image, 0, 0)
+display.show_image(image, 0, 0)
 
 while True:
     # with canvas(device) as draw:
@@ -112,4 +112,4 @@ while True:
     else:  # button is pressed:
         draw.ellipse((70, 40, 90, 60), outline=255, fill=0)  # A button filled
         print("KEY3")
-    disp.show_image(image, 0, 0)
+    display.show_image(image, 0, 0)

@@ -5,9 +5,9 @@ set -eux
 sudo apt update
 
 echo -n "Install packages via apt? [Y/n]: "
-read ANS1
+read ANS_APT
 
-case $ANS1 in
+case $ANS_APT in
   "" | [Yy]* )
     echo "Sure."
     sudo apt install -y python3-opencv
@@ -26,23 +26,10 @@ case $ANS1 in
     ;;
 esac
 
-echo -n "Rewrite /boot/config.txt ? [Y/n]: "
-read ANS2
-
-case $ANS2 in
-  "" | [Yy]* )
-    echo "Sure."
-    sudo sed -i -e 's|\(^dtparam=i2c_vc\).*$|#&\n\1=on|' /boot/config.txt
-    ;;
-  * )
-    echo "Alright, read README.md to rewrite /boot/config.txt."
-    ;;
-esac
-
 echo -n "Rewrite /etc/modules ? [Y/n]: "
-read ANS3
+read ANS_MODULES
 
-case $ANS3 in
+case $ANS_MODULES in
   "" | [Yy]* )
     echo "Sure."
     echo "i2c-dev" >> /etc/modules
@@ -53,9 +40,9 @@ case $ANS3 in
 esac
 
 echo -n "Install BCM driver? [Y/n]: "
-read ANS4
+read ANS_BCM
 
-case $ANS4 in
+case $ANS_BCM in
   "" | [Yy]* )
     echo "Sure."
     wget -O - http://www.airspayce.com/mikem/bcm2835/bcm2835-1.62.tar.gz | tar zxvf -
@@ -67,6 +54,20 @@ case $ANS4 in
     ;;
   * )
     echo "Alright, read README.md to install BCM driver."
+    ;;
+esac
+
+echo -n "Run setup_LiPoSHIM.sh? [Y/n]: "
+read ANS_LIPOSHIM
+
+case $ANS_LIPOSHIM in
+  "" | [Yy]* )
+    echo "Sure."
+    chmod +x setup_LiPoSHIM.sh
+    ./setup_LiPoSHIM.sh
+    ;;
+  * )
+    echo "Alright, read README.md to run setup_LiPoSHIM.sh."
     ;;
 esac
 

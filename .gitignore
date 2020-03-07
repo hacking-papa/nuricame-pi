@@ -320,6 +320,12 @@ zsdoc/data
 
 # End of https://www.gitignore.io/api/osx,ssh,zsh,linux,python,opencv,windows,pycharm+all,visualstudiocode
 
-### Data
+### Image
 *.jpg
 *.png
+*.bmp
+*.gif
+!sample*.jpg
+
+### Log
+*.log
