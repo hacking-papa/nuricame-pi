@@ -70,6 +70,7 @@ class BtCommandByte(object):
 
 class Printer:
     standard_key = 0x35769521
+    print_resolution = 384
     padding_line = 300
     max_send_msg_length = 2016
     max_recv_msg_length = 1024
@@ -274,17 +275,17 @@ if __name__ == "__main__":
     if printer.connected:
         printer.send_density2bluetooth(95)
 
-        # Print an existing image(need opencv):
-        img = cv2.imread("sample_images/sample_1920x1920.jpg", 0)
-        # ret, binary_img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-        binary_img, _ = cv2.decolor(img)
-        height, width = binary_img.shape[:]
-        binary_img = cv2.resize(binary_img, (384, int(height * 384.0 / width)), cv2.INTER_AREA)
-        printer.send_image2bluetooth(binary_img)
+        # Print an existing image
+        img = cv2.imread("sample_images/sample_1920x1920.jpg", cv2.IMREAD_GRAYSCALE)
+        img_height, img_width = img.shape[:]
+        resized_img = cv2.resize(img,
+                                 (printer.print_resolution, int(img_height * printer.print_resolution / img_width)),
+                                 cv2.INTER_AREA)
+        printer.send_image2bluetooth(resized_img)
 
         # Print a pure black image with 300 lines
-        img = b"\xff" * 48 * 300
-        printer.send_binary2bluetooth(img)
+        pure_black = b"\xff" * 48 * 300
+        printer.send_binary2bluetooth(pure_black)
 
         printer.disconnect()
     else:
