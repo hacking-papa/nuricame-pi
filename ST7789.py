@@ -143,10 +143,9 @@ class ST7789(object):
     def show_image(self, image, x_start, y_start):
         """ Set buffer to value of Python Imaging Library image. """
         """ Write display buffer to physical display """
-        imwidth, imheight = image.size
-        if imwidth != self.width or imheight != self.height:
-            raise ValueError('Image must be same dimensions as display \
-                ({0}x{1}).'.format(self.width, self.height))
+        img_width, img_height = image.size
+        if img_width != self.width or img_height != self.height:
+            raise ValueError(f"Image must be same dimensions as display ({self.width}x{self.height}).")
         img = np.asarray(image)
         pix = np.zeros((self.width, self.height, 2), dtype=np.uint8)
         pix[..., [0]] = np.add(np.bitwise_and(img[..., [0]], 0xF8), np.right_shift(img[..., [1]], 5))

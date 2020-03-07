@@ -225,8 +225,8 @@ class Printer:
             bits = [bits[x:x + 8] for x in range(0, len(bits), 8)]
             msg = ""
             for bit in bits:
-                bin = "0b" + "".join(str(x) for x in bit)
-                msg += "{:02x}".format(int(bin, 0))
+                binary = "0b" + "".join(str(x) for x in bit)
+                msg += "{:02x}".format(int(binary, 0))
             msg = bytes.fromhex(msg)
             self.send2bluetooth(msg, BtCommandByte.PRT_PRINT_DATA, need_reply=False)
         self.send_feed_line2bluetooth(self.padding_line)

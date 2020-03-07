@@ -54,7 +54,7 @@ GPIO.setup(KEY3_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Input with pull-up
 # Make sure to create image with mode '1' for 1-bit color.
 width = 240
 height = 240
-image = Image.new('RGB', (width, height))
+image = Image.new("RGB", (width, height))
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
@@ -112,4 +112,5 @@ while True:
     else:  # button is pressed:
         draw.ellipse((70, 40, 90, 60), outline=255, fill=0)  # A button filled
         print("KEY3")
+    
     display.show_image(image, 0, 0)
