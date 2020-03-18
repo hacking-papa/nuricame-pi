@@ -6,6 +6,8 @@ import argparse
 import cv2 as cv
 import numpy as np
 
+import ZhangSuen
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--input", help="Path to input image.", required=True)
 parser.add_argument("--width", help="Resize input image to a specific width.", default=384, type=int)
@@ -51,12 +53,17 @@ output = net.forward()
 output = output[0, 0]
 output = cv.resize(output, (image.shape[1], image.shape[0]))
 
-output = cv.cvtColor(output, cv.COLOR_GRAY2BGR)
+# output = cv.cvtColor(output, cv.COLOR_GRAY2BGR)
 output = 255 * output
 output = output.astype(np.uint8)
+output = cv.bitwise_not(output)
 
+output = ZhangSuen.ZhangSuen(output)
+
+print(f"type(output): {type(output)}")
 print(f"np.max(output): {np.max(output)}")
 print(f"np.min(output): {np.min(output)}")
 print(f"output.shape: {output.shape}")
 
-cv.imwrite(args.output, output)
+# cv.imwrite(args.output, output)
+output.save(args.output)
