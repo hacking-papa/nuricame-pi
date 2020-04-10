@@ -58,12 +58,12 @@ output = 255 * output
 output = output.astype(np.uint8)
 output = cv.bitwise_not(output)
 
-output = ZhangSuen.ZhangSuen(output)
+# output = ZhangSuen.ZhangSuen(output)
 
 print(f"type(output): {type(output)}")
 print(f"np.max(output): {np.max(output)}")
 print(f"np.min(output): {np.min(output)}")
 print(f"output.shape: {output.shape}")
 
-# cv.imwrite(args.output, output)
-output.save(args.output)
+cv.imwrite(args.output, output)
+# output.save(args.output)

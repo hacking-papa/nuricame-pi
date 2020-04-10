@@ -1,7 +1,7 @@
 import numpy as np
 
 
-# 与えられた引数全てについての論理積を返すメソッドです。
+# 与えられた引数全てについての論理積を返す
 def multi_logical_and(*args):
     result = np.copy(args[0])
     for arg in args:
@@ -9,7 +9,7 @@ def multi_logical_and(*args):
     return result
 
 
-# 2値画像について、周囲1ピクセルをFalseで埋めるメソッドです
+# 2値画像について、周囲1ピクセルをFalseで埋める
 def padding(binary_image):
     row, col = np.shape(binary_image)
     result = np.zeros((row + 2, col + 2))
@@ -17,12 +17,12 @@ def padding(binary_image):
     return result
 
 
-# paddingの逆です
+# paddingの逆
 def unpadding(image):
     return image[1:-1, 1:-1]
 
 
-# そのピクセルの周囲のピクセルの情報を格納したarrayを返します。
+# そのピクセルの周囲のピクセルの情報を格納したarrayを返す
 def generate_mask(image):
     row, col = np.shape(image)
     p2 = np.zeros((row, col)).astype(bool)
@@ -52,10 +52,10 @@ def generate_mask(image):
     return (p2, p3, p4, p5, p6, p7, p8, p9)
 
 
-# 周囲のピクセルを順番に並べたときに白→黒がちょうど1箇所だけあるかどうかを判定するメソッドです。
+# 周囲のピクセルを順番に並べたときに白→黒がちょうど1箇所だけあるかどうかを判定する
 def is_once_change(p_tuple):
     number_change = np.zeros_like(p_tuple[0])
-    # P2~P9,P2について、隣接する要素の排他的論理和を取った場合のTrueの個数を数えます。
+    # P2~P9,P2について、隣接する要素の排他的論理和を取った場合のTrueの個数を数える
     for i in range(len(p_tuple) - 1):
         number_change = np.add(number_change, np.logical_xor(p_tuple[i], p_tuple[i + 1]).astype(int))
     number_change = np.add(number_change, np.logical_xor(p_tuple[7], p_tuple[0]).astype(int))
@@ -64,7 +64,7 @@ def is_once_change(p_tuple):
     return np.equal(number_change, array_two)
 
 
-# 周囲の黒ピクセルの数を数え、2以上6以下となっているかを判定するメソッドです。
+# 周囲の黒ピクセルの数を数え、2以上6以下となっているかを判定する
 def is_black_pixels_appropriate(p_tuple):
     number_of_black_pxels = np.zeros_like(p_tuple[0])
     array_two = np.ones_like(p_tuple[0]) * 2
@@ -114,7 +114,7 @@ def step2(image, p_tuple):
     return np.logical_xor(multi_logical_and(condition1, condition2, condition3, condition4, condition5), image)
 
 
-# 2値化画像を細線化して返すメソッドです。
+# 2値化画像を細線化して返す
 def ZhangSuen(image):
     image = padding(image)
 

@@ -1,6 +1,6 @@
 # nuricame-pi
 
-Turtle makes a contour by pictures, Raspberry Pi version.
+Make a contour by pictures, Raspberry Pi version.
 
 - [How to Setup](#how-to-setup)
   - [LiPo SHIM](#lipo-shim)
